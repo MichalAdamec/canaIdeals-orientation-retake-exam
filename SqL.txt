@@ -1,0 +1,17 @@
+Write queries that:
+
+1)Select name and preferences of applicants under age of 30 from Hungary (using name of the country within query, and not the country_id value)
+
+SELECT name, preference FROM myowndatabase.applicants join myowndatabase.countries on myowndatabase.applicants.country_id = myowndatabase.countries.id where country='Hungary' and age<30;
+
+
+
+2)Since we won't be offering Python courses in Hungary anymore, update preference of all hungarian applicants to Unknown (you can use explicit country_id value here)
+
+update myowndatabase.applicants set preference='unknown' where applicants.country_id=2;
+
+
+
+3)Show average age of Czech and Hungarian applicants such as:
+
+select country, avg(age) as average_age from myowndatabase.applicants join myowndatabase.countries on applicants.country_id = countries.id group by country;
