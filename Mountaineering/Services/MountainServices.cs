@@ -31,5 +31,15 @@ namespace Mountaineering.Services
             var climbers = GetClimbers().Where(a => a.Nationality == nationality & a.Altitude >= altitude).OrderBy(a => a.Altitude).ToList();
             return climbers;
         }
+        public void AddClimber(string name, string nationality, int mountain)
+        {
+            DbContext.ClimberTable.Add(new Climber { Climbers_Name = name, Nationality = nationality, Mountain_Id = mountain});
+            DbContext.SaveChanges();
+        }
+        public Mountain GetMountainById(int id)
+        {
+            var mountain = DbContext.MountainTable.FirstOrDefault(a => a.Id == id);
+            return mountain;
+        }
     }
 }

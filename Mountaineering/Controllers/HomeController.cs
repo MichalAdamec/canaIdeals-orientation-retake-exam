@@ -27,9 +27,9 @@ namespace Mountaineering.Controllers
         }
 
         [HttpPost("climbers")]
-        public IActionResult Climbers([FromForm] string name, string nationality, string mountain)
+        public IActionResult Climbers([FromForm] string name, string nationality, int mountain_Id)
         {
-            MountainServices.AddClimber(name, nationality, mountain);
+            MountainServices.AddClimber(name, nationality, mountain_Id);
             return RedirectToAction("MainPage");
         }
 
