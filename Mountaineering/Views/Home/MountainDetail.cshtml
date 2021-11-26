@@ -1,0 +1,33 @@
+﻿@model Mountaineering.Models.ViewModels.ViewModel
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Mountain detail</title>
+</head>
+
+<body>
+    <h1>@Model.MountainVM.Mountain_Name - @Model.MountainVM.Height (Level @Model.MountainVM.Level)</h1>
+
+    @if (Model.MountainVM.FirstAscent != string.Empty)
+    {
+        <p>Peak first reached on @Model.MountainVM.FirstAscent</p>
+    }<br />
+    <h2>Climbers present on mountain:</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Nationality</th>
+            <th>Altitude</th>
+            <th>Injured</th>
+        </tr>
+        @foreach (var item in Model.ClimbersVM)
+        {
+            <tr>
+                <td>@item.Climbers_Name</td>
+                <td>@item.Nationality</td>
+                <td>@item.Altitude</td>
+                <td>@item.IsInjured</td>
+            </tr>
+        }
+    </table><hr />
+</body>
+</html>

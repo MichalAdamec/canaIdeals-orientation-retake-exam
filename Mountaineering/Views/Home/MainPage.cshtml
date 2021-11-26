@@ -1,0 +1,72 @@
+﻿@model Mountaineering.Models.ViewModels.ViewModel
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Main Page</title>
+</head>
+<body>
+    <h1>Mountaineering</h1><hr />
+
+    <h2>Climbers overview</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Nationality</th>
+            <th>Mountain</th>
+            <th>Altitude</th>
+            <th>Injured</th>
+        </tr>
+        @if (Model.ClimbersVM != null)
+        {
+            @foreach (var item in Model.ClimbersVM)
+            {
+                <tr>
+                    <td>@item.Climbers_Name</td>
+                    <td>@item.Nationality</td>
+                    <td><a href="">@item.Mountain.Mountain_Name</a></td>
+                    <td>@item.Altitude</td>
+                    <td>@item.IsInjured</td>
+                </tr>
+            }
+        }
+        Else
+        {
+            <tr>No climbers in list</tr>
+        }
+    </table><hr />
+
+    <h2>Climb a mountain</h2>
+    <form action="" method="">
+        <label for="climber">Climber:</label><br />
+        <select id="climber" name="climber">
+            @foreach (var item in Model.ClimbersVM.Where(a => a.IsInjured == false))
+            {
+                <option>@item.Climbers_Name</option>
+            }
+        </select><br />
+
+        <label for="distance">Distance:</label><br />
+        <input type="number" min="0" max="8850" step="50" placeholder="Height in meters" /><br />
+
+        <input type="submit" value="Submit" />
+    </form><hr />
+
+    <h2>Add new climber</h2>
+    <form action="climbers" method="post">
+        <label for="name">Name:</label><br />
+        <input type="text" id="name" name="name" placeholder="Name" /><br />
+
+        <label for="nationality">Nationality:</label><br />
+        <input type="text" id="nationality" name="nationality" placeholder="Nationality" /><br />
+
+        <label for="mountain">Mountain:</label><br />
+        <select id="mountain" name="mountain">
+            @foreach (var item in Model.MountainsVM)
+            {
+                <option>@item.Mountain_Name</option>
+            }
+        </select><br />
+
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+</html>
